@@ -1,0 +1,133 @@
+
+<div id="wrapper">
+   <div id="sidebar" class="sidenav">
+        <div class="userArea">
+              <div class="userPicture">
+              </div>
+              <div class="userName">
+                    Tracy Thun
+              </div>
+        </div>
+        <br/>
+        <span class="divider"></span>
+       
+        <ul class="navigation">
+        <li>
+            <a routerLink="#"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
+        </li>
+        <li>
+            <a routerLink="/" class="active"><i class="fa fa-file"></i><span> Employees</span></a>
+        </li>
+        <li>
+            <a href="#"><i class="fa fa-bar-chart-o"></i><span> Reports</span></a>
+        </li>
+        <li>
+            <a href="#"><i class="fa fa-credit-card"></i><span> Payrolls</span></a>
+        </li>
+        <li>
+            <a href="#"><i class='fa fa-book'></i><span> Invoices</span></a>
+        </li>
+        <li>
+            <a href="#"><i class="fa fa-user"></i><span> Clients</span></a>
+        </li>
+        <li>
+            <a href="#"><i class="fa fa fa-bookmark"></i><span> Events</span></a>
+        </li>
+        <li>
+            <a href="#"><i class="fa fa-gear"></i><span> Settings</span></a>
+        </li>
+    </ul>
+  </div>
+
+    <!--Table for employee result-->   
+    <div class="table-container">      
+      <div class="search-bars">
+        <div class="search-bar">
+          <form id="form1" role="search">
+            <input type="search" id="query1" name="q"
+            placeholder="Enter minimum salary"
+            aria-label="Search through site content">
+            <button><i class="fa fa-search"></i></button>
+          </form>
+       </div>
+        <div class="hyphen"></div>
+
+        <div class="search-bar">
+          <form id="form2" role="search">
+            <input type="search" id="query2" name="q"
+            placeholder="Enter maximum salary"
+            aria-label="Search through site content">
+            <button><i class="fa fa-search"></i></button>
+          </form>
+        </div>
+      </div>
+
+      <div class="upload">
+        <input type="file">
+      </div>
+
+        <div class="row">
+            <h2>Employees</h2>
+        </div>
+        <table matSort (matSortChange)="sortData($event)" class="table table-hover"> 
+        <thead>   
+          <tr>
+            <th mat-sort-header="id">Id</th>
+            <th mat-sort-header="name">Name</th>
+            <th mat-sort-header="login">Login</th>
+            <th mat-sort-header="salary">Salary</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee of sortedData">
+            <td>{{employee.id}}</td>
+            <td>{{employee.name}}</td>
+            <td>{{employee.login}}</td>
+            <td>S${{employee.salary| number:'1.2-2'}}</td>
+            <td>
+                <i class="fa fa-pencil fa-2x"  data-bs-toggle="modal" data-bs-target="#editEmployee" (click)="editEmployee(employee)" style="cursor: pointer;"></i>
+                <span style="margin-left:10px; margin-right: 5px;"></span>
+                <i class="fa fa-trash-o fa-2x" (click)="confirmDelete(employee)" style="cursor: pointer;"></i>
+            </td>
+          </tr>
+
+        </tbody>
+       
+      </table>
+    </div>
+</div>
+
+<!-- Edit employee modal -->
+  <div class="modal fade" id="editEmployee" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="exampleModalLabel">Edit </h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+            <form [formGroup]="empDetail">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Name </label>
+                    <input type="text" formControlName="name" class="form-control" id="name" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Login </label>
+                  <input type="text" formControlName="login" class="form-control" id="login" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Salary </label>
+                    <input type="number" formControlName="salary" class="form-control" id="salary" aria-describedby="emailHelp">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn btn-dark" (click)="updateEmployee()" data-bs-dismiss="modal" style="width:100%">Save </button>
+                </div>
+              </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
