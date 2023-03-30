@@ -1,9 +1,12 @@
 # Employee-Management-System
 
 Employee Salary Management System has these working functions:
-* HR will be able to view employee list (id, Name, Login and Salary) 
-* be able to edit and delete each employee rows. 
-* be able to sort each columns ascending and descending order. 
+* will be able to view employee list (id, Name, Login and Salary) 
+* when sorting by name in ascending order, it should display in ascending order by name
+* when sorting by salary in ascending order, it should display in ascending order by salary
+* when sorting by login in ascending order, it should display in descending order by login
+* when clicked on edit function, should be able to edit employee details and modified information will be able to see
+* when clicked on delete button, a confirmation prompt will ask if you really want to delete the employee.
 
 <h2>Front end</h2> done by dependencies: 
 - Angular CLI: 15.0.5, 
@@ -99,6 +102,12 @@ Recommend using Postman to test the APIs. Status response will be 200 OK when th
  * DELETE Employee by Id- localhost:8081/users/{id} (DELETE)
  <h5> E.g. localhost:8081/users/e0001 </h5>
  
+ * UPLOAD CSV- localhost:8081/users/upload (POST)
+ <b>Click Body->binary->"Select File"
+ Then in the Headers, change the information as follows.
+<p>
+ <img width="613" alt="image" src="https://user-images.githubusercontent.com/67495989/228772947-93cd7afc-92d7-4640-915a-897b9ca92140.png">
+</p>
  
 
 
